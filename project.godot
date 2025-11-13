@@ -11,8 +11,13 @@ config_version=5
 [application]
 
 config/name="milkyway-to-the-moon"
+run/main_scene="uid://c6jj2rm808kj3"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/godot_super-wakatime/plugin.cfg")
 
 [rendering]
 
