@@ -1,10 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://1hpb0hrtgxv"]
+[gd_scene load_steps=10 format=3 uid="uid://1hpb0hrtgxv"]
 
 [ext_resource type="Script" uid="uid://cltepgpw1xs3w" path="res://scenes/s_1.gd" id="1_2ng2b"]
 [ext_resource type="Texture2D" uid="uid://dkjr8vgkktvbh" path="res://assets/Sprite-0002.png" id="1_wbibk"]
 [ext_resource type="Script" uid="uid://3gre0yewmhtr" path="res://scripts/rock.gd" id="2_3c855"]
 [ext_resource type="Theme" uid="uid://c0es2kte6qmmp" path="res://scripts/normal.tres" id="3_yyhw1"]
+[ext_resource type="Script" uid="uid://dg2yw3k74hrpy" path="res://scripts/label_3.gd" id="5_gy76w"]
+[ext_resource type="Texture2D" uid="uid://corhksc3axq45" path="res://assets/rockcoin.png" id="6_0thrn"]
 [ext_resource type="Script" uid="uid://beky6a75cj5od" path="res://scripts/label_2.gd" id="6_gy76w"]
+[ext_resource type="Script" uid="uid://yh7qb4w1gpbe" path="res://scripts/button.gd" id="8_kky4p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3c855"]
 size = Vector2(14, 14)
@@ -45,3 +48,33 @@ offset_bottom = -237.0
 theme = ExtResource("3_yyhw1")
 theme_override_font_sizes/font_size = 50
 text = "Click the asteroid to get stone!"
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Node2D"]
+texture_filter = 1
+offset_left = -568.0
+offset_top = -317.0
+offset_right = -528.0
+offset_bottom = -277.0
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("6_0thrn")
+
+[node name="Label3" type="Label" parent="Node2D"]
+texture_filter = 1
+offset_left = -520.0
+offset_top = -317.0
+offset_right = -403.0
+offset_bottom = -266.0
+theme = ExtResource("3_yyhw1")
+theme_override_font_sizes/font_size = 50
+script = ExtResource("5_gy76w")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 116.0
+offset_top = 158.0
+offset_right = 493.0
+offset_bottom = 207.0
+theme = ExtResource("3_yyhw1")
+text = "Auto Mine (1 click/sec)"
+script = ExtResource("8_kky4p")
