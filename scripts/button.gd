@@ -10,4 +10,4 @@ func _on_button_pressed():
 func start_click() -> void:
 	await get_tree().create_timer(interval).timeout
 	Global._rock_1click()
-	start_click()  # call again to repeat
+	start_click() 
