@@ -23,14 +23,14 @@ func _input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
 		Global._rock_1click()
 		if Global.rock > 1000000:
-			Global.rock1mult += ((Global.rock-500000)*0.009)
+			Global.rock1mult += ((Global.rock-500000)*0.0009)
 		elif Global.rock > 100000:
-			Global.rock1mult += ((Global.rock-50000)*0.007)
+			Global.rock1mult += ((Global.rock-50000)*0.0007)
 		elif Global.rock > 10000:
-			Global.rock1mult += ((Global.rock-5000)*0.005)
+			Global.rock1mult += ((Global.rock-5000)*0.0005)
 		elif Global.rock > 1000:
-			Global.rock1mult += ((Global.rock-500)*0.002)
+			Global.rock1mult += ((Global.rock-500)*0.0002)
 		elif Global.rock > 100:
-			Global.rock1mult += ((Global.rock-50)*0.001)
+			Global.rock1mult += ((Global.rock-50)*0.0001)
 		else:
-			Global.rock1mult += ((Global.rock-10)*0.0005)
+			Global.rock1mult += ((Global.rock)*0.00005)

@@ -1,14 +1,15 @@
-[gd_scene load_steps=16 format=3 uid="uid://1hpb0hrtgxv"]
+[gd_scene load_steps=17 format=3 uid="uid://1hpb0hrtgxv"]
 
 [ext_resource type="Script" uid="uid://cltepgpw1xs3w" path="res://scenes/s_1.gd" id="1_2ng2b"]
-[ext_resource type="Texture2D" uid="uid://dkjr8vgkktvbh" path="res://assets/Sprite-0002.png" id="1_wbibk"]
 [ext_resource type="Script" uid="uid://3gre0yewmhtr" path="res://scripts/rock.gd" id="2_3c855"]
+[ext_resource type="Texture2D" uid="uid://cisndv6t1obs8" path="res://assets/rock.png" id="3_uutvs"]
 [ext_resource type="Theme" uid="uid://c0es2kte6qmmp" path="res://scripts/normal.tres" id="3_yyhw1"]
 [ext_resource type="Script" uid="uid://dg2yw3k74hrpy" path="res://scripts/label_3.gd" id="5_gy76w"]
 [ext_resource type="Texture2D" uid="uid://corhksc3axq45" path="res://assets/rockcoin.png" id="6_0thrn"]
 [ext_resource type="Script" uid="uid://beky6a75cj5od" path="res://scripts/label_2.gd" id="6_gy76w"]
 [ext_resource type="Script" uid="uid://yh7qb4w1gpbe" path="res://scripts/button.gd" id="8_kky4p"]
 [ext_resource type="Script" uid="uid://ky3pqqw5yu7p" path="res://scripts/label.gd" id="9_ny864"]
+[ext_resource type="Script" uid="uid://cletjw730xa57" path="res://scripts/label_4.gd" id="9_xysxj"]
 [ext_resource type="Texture2D" uid="uid://dhd4jtxdr5hpo" path="res://assets/sprites/kuro/base/idle.png" id="10_uutvs"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3c855"]
@@ -55,7 +56,7 @@ script = ExtResource("2_3c855")
 
 [node name="Sprite2D" type="Sprite2D" parent="rock"]
 texture_filter = 1
-texture = ExtResource("1_wbibk")
+texture = ExtResource("3_uutvs")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="rock"]
 shape = SubResource("RectangleShape2D_3c855")
@@ -109,6 +110,15 @@ offset_bottom = 207.0
 theme = ExtResource("3_yyhw1")
 text = "Auto Mine (1 click/sec)"
 script = ExtResource("8_kky4p")
+
+[node name="Label4" type="Label" parent="."]
+texture_filter = 1
+offset_left = 98.0
+offset_top = 105.0
+offset_right = 500.0
+offset_bottom = 163.0
+theme = ExtResource("3_yyhw1")
+script = ExtResource("9_xysxj")
 
 [node name="Label3" type="Label" parent="."]
 texture_filter = 1

@@ -6,7 +6,6 @@ extends Button
 @export var button_e: bool = false
 
 var upgrade_level: int = 0
-var current_interval: float
 
 func _ready():
 	pressed.connect(_on_button_pressed)
@@ -28,16 +27,19 @@ func _on_button_pressed():
 		print("Not enough rcoin! Need:", cost)
 
 func update_interval():
-	current_interval = base_interval * pow(0.75, upgrade_level)
+	Global.current_interval = base_interval * pow(0.75, upgrade_level)
 
 func get_upgrade_cost() -> int:
 	return int(base_cost * pow(cost_multiplier, upgrade_level))
 
 func update_text():
-	text = "Upgrade (Cost: %d)" % get_upgrade_cost()
+	if upgrade_level == 0:
+		text = "Auto Mine (Cost: 10)"
+	else:
+		text = "Upgrade (Cost: " + str(Global.f_n(get_upgrade_cost())) + ")"
 
 func start_click() -> void: 
 	if button_e == true:
-		await get_tree().create_timer(current_interval).timeout 
+		await get_tree().create_timer(Global.current_interval).timeout 
 		Global._rock_1click() 
 		start_click()
