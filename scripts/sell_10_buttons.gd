@@ -30,29 +30,36 @@ func _ready():
 
 
 func _sell_10_rock():
-	Global.coin += 10 * sell_rates["rock"]
-	Global.rock -= 10
+	if Global.rock > 10:
+		Global.coin += 10 * sell_rates["rock"]
+		Global.rock -= 10
 
 func _sell_10_copper():
-	Global.coin += 10 * sell_rates["copper"]
-	Global.copper -= 10
+	if Global.copper > 10:
+		Global.coin += 10 * sell_rates["copper"]
+		Global.copper -= 10
 
 func _sell_10_iron():
-	Global.coin += 10 * sell_rates["iron"]
-	Global.iron -= 10
+	if Global.iron > 10:
+		Global.coin += 10 * sell_rates["iron"]
+		Global.iron -= 10
 
 func _sell_10_gold():
-	Global.coin += 10 * sell_rates["gold"]
-	Global.gold -= 10
+	if Global.gold > 10:
+		Global.coin += 10 * sell_rates["gold"]
+		Global.gold -= 10
 
 func _sell_10_zinc():
-	Global.coin += 10 * sell_rates["zinc"]
-	Global.zinc -= 10
+	if Global.zinc > 10:
+		Global.coin += 10 * sell_rates["zinc"]
+		Global.zinc -= 10
 
 func _sell_10_emerald():
-	Global.coin += 10 * sell_rates["emerald"]
-	Global.emerald -= 0
+	if Global.emerald > 10:
+		Global.coin += 10 * sell_rates["emerald"]
+		Global.emerald -= 0
 
 func _sell_10_lapis():
-	Global.coin += 10 * sell_rates["lapis"]
-	Global.lapis -= 10
+	if Global.lapis > 10:
+		Global.coin += 10 * sell_rates["lapis"]
+		Global.lapis -= 10
