@@ -52,16 +52,16 @@ script = ExtResource("1_q631x")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="rock" type="Area2D" parent="."]
+[node name="Rock" type="Area2D" parent="."]
 position = Vector2(-315.99997, 0)
 scale = Vector2(20, 20)
 script = ExtResource("2_3c855")
 
-[node name="Sprite2D" type="Sprite2D" parent="rock"]
+[node name="Sprite2D" type="Sprite2D" parent="Rock"]
 texture_filter = 1
 texture = ExtResource("3_uutvs")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="rock"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rock"]
 shape = SubResource("RectangleShape2D_3c855")
 
 [node name="GeneralLabel" type="Label" parent="."]
@@ -74,7 +74,7 @@ theme = ExtResource("3_yyhw1")
 theme_override_font_sizes/font_size = 30
 script = ExtResource("6_gy76w")
 
-[node name="Label1" type="Label" parent="."]
+[node name="TutorialLabel" type="Label" parent="."]
 texture_filter = 1
 offset_left = -124.0
 offset_top = -289.0
@@ -84,9 +84,9 @@ theme = ExtResource("3_yyhw1")
 theme_override_font_sizes/font_size = 40
 text = "Click the asteroid to get stone!"
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="CoinDisplay" type="Node2D" parent="."]
 
-[node name="TextureRect" type="TextureRect" parent="Node2D"]
+[node name="TextureRect" type="TextureRect" parent="CoinDisplay"]
 texture_filter = 1
 offset_left = -568.0
 offset_top = -317.0
@@ -95,7 +95,7 @@ offset_bottom = -277.0
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("6_0thrn")
 
-[node name="CoinLabel" type="Label" parent="Node2D"]
+[node name="CoinLabel" type="Label" parent="CoinDisplay"]
 texture_filter = 1
 offset_left = -505.0
 offset_top = -317.0
@@ -150,7 +150,7 @@ offset_bottom = -193.0
 theme = ExtResource("3_yyhw1")
 script = ExtResource("9_ny864")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="Kuro" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 position = Vector2(-546, 285)
 scale = Vector2(3.645833, 3.645833)
@@ -254,3 +254,13 @@ layout_mode = 2
 theme = ExtResource("3_yyhw1")
 theme_override_font_sizes/font_size = 22
 text = "Sell 10"
+
+[node name="RocketBuilding" type="Button" parent="."]
+offset_left = 267.0
+offset_top = 261.0
+offset_right = 552.0
+offset_bottom = 305.0
+theme = ExtResource("3_yyhw1")
+text = "Build A Rocket -->"
+
+[connection signal="pressed" from="RocketBuilding" to="." method="_on_rocket_building_pressed"]
