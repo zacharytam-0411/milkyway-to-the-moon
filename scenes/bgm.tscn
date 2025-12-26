@@ -1,12 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://bu3duc8idasqh"]
+[gd_scene load_steps=2 format=3 uid="uid://bu3duc8idasqh"]
 
-[ext_resource type="AudioStream" uid="uid://pp0onfwgxuna" path="res://assets/sleighride.mp3" id="1_q5y64"]
 [ext_resource type="Script" uid="uid://buubpipp5ofov" path="res://scripts/audio_stream_player.gd" id="2_3c3jb"]
 
 [node name="Node2D" type="Node2D"]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_q5y64")
+volume_db = -30.0
 autoplay = true
-parameters/looping = true
 script = ExtResource("2_3c3jb")
