@@ -19,61 +19,11 @@ extends Node2D
 @onready var rocket: TextureRect = $Rocket
 
 var rocket_parts = {
-	"plating": {
-		"costs": [
-			{"copper": 10},
-			{"iron": 15, "copper": 10},
-			{"gold": 20, "iron": 15},
-			{"zinc": 25, "gold": 20},
-			{"emerald": 30, "zinc": 25},
-			{"lapis": 35, "emerald": 30},
-			{"diamond": 40, "lapis": 35}
-		]
-	},
-	"engine": {
-		"costs": [
-			{"copper": 12},
-			{"iron": 18, "copper": 12},
-			{"gold": 24, "iron": 18},
-			{"zinc": 30, "gold": 24},
-			{"emerald": 36, "zinc": 30},
-			{"lapis": 42, "emerald": 36},
-			{"diamond": 50, "lapis": 42}
-		]
-	},
-	"fins": {
-		"costs": [
-			{"copper": 8},
-			{"iron": 12, "copper": 8},
-			{"gold": 16, "iron": 12},
-			{"zinc": 20, "gold": 16},
-			{"emerald": 24, "zinc": 20},
-			{"lapis": 28, "emerald": 24},
-			{"diamond": 32, "lapis": 28}
-		]
-	},
-	"topcone": {
-		"costs": [
-			{"copper": 14},
-			{"iron": 20, "copper": 14},
-			{"gold": 26, "iron": 20},
-			{"zinc": 32, "gold": 26},
-			{"emerald": 38, "zinc": 32},
-			{"lapis": 44, "emerald": 38},
-			{"diamond": 50, "lapis": 44}
-		]
-	},
-	"tank": {
-		"costs": [
-			{"copper": 16},
-			{"iron": 22, "copper": 16},
-			{"gold": 28, "iron": 22},
-			{"zinc": 34, "gold": 28},
-			{"emerald": 40, "zinc": 34},
-			{"lapis": 46, "emerald": 40},
-			{"diamond": 52, "lapis": 46}
-		]
-	}
+	"plating": {"costs":[{"copper":10},{"iron":15,"copper":10},{"gold":20,"iron":15},{"zinc":25,"gold":20},{"emerald":30,"zinc":25},{"lapis":35,"emerald":30},{"diamond":40,"lapis":35}]},
+	"engine": {"costs":[{"copper":12},{"iron":18,"copper":12},{"gold":24,"iron":18},{"zinc":30,"gold":24},{"emerald":36,"zinc":30},{"lapis":42,"emerald":36},{"diamond":50,"lapis":42}]},
+	"fins": {"costs":[{"copper":8},{"iron":12,"copper":8},{"gold":16,"iron":12},{"zinc":20,"gold":16},{"emerald":24,"zinc":20},{"lapis":28,"emerald":24},{"diamond":32,"lapis":28}]},
+	"topcone": {"costs":[{"copper":14},{"iron":20,"copper":14},{"gold":26,"iron":20},{"zinc":32,"gold":26},{"emerald":38,"zinc":32},{"lapis":44,"emerald":38},{"diamond":50,"lapis":44}]},
+	"tank": {"costs":[{"copper":16},{"iron":22,"copper":16},{"gold":28,"iron":22},{"zinc":34,"gold":28},{"emerald":40,"zinc":34},{"lapis":46,"emerald":40},{"diamond":52,"lapis":46}]}
 }
 
 var plating_textures = [
@@ -108,6 +58,7 @@ var engine_textures = [
 	preload("res://assets/lapisengine.png"),
 	preload("res://assets/diamondengine.png")
 ]
+
 var tank_textures = [
 	preload("res://assets/steeltank.png"),
 	preload("res://assets/coppertank.png"),
@@ -118,6 +69,7 @@ var tank_textures = [
 	preload("res://assets/lapistank.png"),
 	preload("res://assets/diamondtank.png")
 ]
+
 var top_cone_textures = [
 	preload("res://assets/steeltopcone.png"),
 	preload("res://assets/coppertopcone.png"),
@@ -128,6 +80,13 @@ var top_cone_textures = [
 	preload("res://assets/lapistopcone.png"),
 	preload("res://assets/diamondtopcone.png")
 ]
+
+var rocket_textures = [
+	preload("res://assets/steelrocket.png"),
+	preload("res://assets/copperrocket.png"),
+	preload("res://assets/ironrocket.png"),
+]
+
 var original_positions := {}
 
 func _ready() -> void:
@@ -137,6 +96,10 @@ func _ready() -> void:
 	upgrade_topcone_button.connect("pressed", Callable(self, "_on_upgrade_topcone_pressed"))
 	upgrade_tank_button.connect("pressed", Callable(self, "_on_upgrade_tank_pressed"))
 	craft_button.connect("pressed", Callable(self, "_on_craft_pressed"))
+	_update_textures()
+	rocket.visible = false
+
+func _update_textures():
 	plating_1.texture = plating_textures[Global.rocket_levels["plating"]]
 	plating_2.texture = plating_textures[Global.rocket_levels["plating"]]
 	fins_1.texture = fins_textures[Global.rocket_levels["fins"]]
@@ -145,8 +108,7 @@ func _ready() -> void:
 	tank_1.texture = tank_textures[Global.rocket_levels["tank"]]
 	tank_2.texture = tank_textures[Global.rocket_levels["tank"]]
 	top_cone_1.texture = top_cone_textures[Global.rocket_levels["topcone"]]
-	rocket.visible = false
-	
+
 func _on_back_button_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/s1.tscn")
 
@@ -162,30 +124,15 @@ func upgrade_part(part_name: String):
 	var costs = rocket_parts[part_name]["costs"]
 
 	if level >= costs.size():
-		print(part_name, "is fully upgraded!")
+		print(part_name, " is fully upgraded!")
 		return
 
 	var cost = costs[level]
 	if can_afford(cost):
 		deduct_cost(cost)
 		Global.rocket_levels[part_name] += 1
-
-		match part_name:
-			"plating":
-				plating_1.texture = plating_textures[Global.rocket_levels["plating"]]
-				plating_2.texture = plating_textures[Global.rocket_levels["plating"]]
-			"fins":
-				fins_1.texture = fins_textures[Global.rocket_levels["fins"]]
-				fins_2.texture = fins_textures[Global.rocket_levels["fins"]]
-			"engine":
-				engine_1.texture = engine_textures[Global.rocket_levels["engine"]]
-			"tank":
-				tank_1.texture = tank_textures[Global.rocket_levels["tank"]]
-				tank_2.texture = tank_textures[Global.rocket_levels["tank"]]
-			"topcone":
-				top_cone_1.texture = top_cone_textures[Global.rocket_levels["topcone"]]
-
-		print("Upgraded ", part_name, "to level ", Global.rocket_levels[part_name])
+		_update_textures()
+		print("Upgraded ", part_name, " to level ", Global.rocket_levels[part_name])
 	else:
 		print("Not enough resources to upgrade ", part_name)
 
@@ -209,12 +156,11 @@ func craft_rocket():
 	var all_minimum = levels.all(func(l): return l >= minimum_level)
 
 	if all_same and all_minimum:
-		print("rocket crafted sucessfully with level :" + str(Global.rocket_levels["plating"]))
-		Global.rocket_tier = Global.rocket_levels["plating"]
+		print("Rocket crafted successfully with level: " + str(Global.rocket_levels["plating"]))
+		rocket.texture = rocket_textures[Global.rocket_levels["plating"]]
 		start_crafting_animation()
 	else:
-		print("failed to craft")
-
+		print("Failed to craft - all parts must be at the same level (minimum level 1)")
 
 func start_crafting_animation():
 	var parts = [
@@ -224,6 +170,7 @@ func start_crafting_animation():
 		tank_1, tank_2,
 		top_cone_1
 	]
+	
 	for p in parts:
 		original_positions[p] = p.global_position
 
@@ -242,17 +189,28 @@ func start_crafting_animation():
 				var spin_angle = angle + (Time.get_ticks_msec() / 200.0)
 				var pos = center + Vector2(cos(spin_angle), sin(spin_angle)) * new_radius
 				part.global_position = pos, start_radius, 0.0, duration
-			).set_delay(i * delay_step)
+		).set_delay(i * delay_step)
 
 		tween.tween_callback(Callable(self, "_on_part_animation_finished").bind(part)).set_delay(i * delay_step + duration)
-		rocket.visible = true
-
 
 func _on_part_animation_finished(part: TextureRect):
-	rocket.visible = false
 	part.visible = false
-	await get_tree().create_timer(1.0).timeout
+
+	var all_invisible = true
 	for p in original_positions.keys():
-		p.global_position = original_positions[p]
-		p.visible = true
-		p.modulate.a = 1.0
+		if p.visible:
+			all_invisible = false
+			break
+	
+	if all_invisible:
+		rocket.visible = true
+		await get_tree().create_timer(1.0).timeout
+		rocket.visible = false
+		for part_name in rocket_parts.keys():
+			Global.rocket_levels[part_name] = 0
+		_update_textures()
+		for p in original_positions.keys():
+			p.global_position = original_positions[p]
+			p.visible = true
+			p.modulate.a = 1.0
+		original_positions.clear()

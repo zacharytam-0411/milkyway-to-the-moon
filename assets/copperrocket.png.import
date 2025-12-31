@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://csdd8r20hsukp"
-path="res://.godot/imported/actualrocket.png-a29f2c9e42210a6d0b07f9d510a0a9c0.ctex"
+uid="uid://del1kxqgq8uvo"
+path="res://.godot/imported/copperrocket.png-6b3e247ab37335a79dace99b2be35fa3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/actualrocket.png"
-dest_files=["res://.godot/imported/actualrocket.png-a29f2c9e42210a6d0b07f9d510a0a9c0.ctex"]
+source_file="res://assets/copperrocket.png"
+dest_files=["res://.godot/imported/copperrocket.png-6b3e247ab37335a79dace99b2be35fa3.ctex"]
 
 [params]
 

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1bmk6oyoig5m"]
+
+[ext_resource type="Theme" uid="uid://c0es2kte6qmmp" path="res://scripts/normal.tres" id="1_gxgo8"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TutorialLabel" type="Label" parent="CanvasLayer"]
+texture_filter = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -335.5
+offset_right = 335.5
+offset_bottom = 52.0
+grow_horizontal = 2
+theme = ExtResource("1_gxgo8")
+theme_override_font_sizes/font_size = 40
+text = "Launch Your Rockets!"
+horizontal_alignment = 1

@@ -5,15 +5,14 @@ var current_interval: float
 var cps: float = 0.0
 var rocktier: String = "rock"
 var rock: float = 0
-var copper: float = 0
-var iron: float = 0
+var copper: float = 10000
+var iron: float = 10000
 var gold: float = 0
 var zinc: float = 0
 var emerald: float = 0
 var lapis: float = 0
 var diamond: float = 0
 var coin: float = 0.0
-var rocket_tier: int = 0
 var upgrade_level: int = 0
 var button_e: bool = false
 
