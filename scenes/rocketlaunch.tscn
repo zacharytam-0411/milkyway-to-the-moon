@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1bmk6oyoig5m"]
+[gd_scene load_steps=4 format=3 uid="uid://c1bmk6oyoig5m"]
 
 [ext_resource type="Script" uid="uid://bl41wdh8i162m" path="res://scripts/rocketlaunch.gd" id="1_d75br"]
 [ext_resource type="Theme" uid="uid://c0es2kte6qmmp" path="res://scripts/normal.tres" id="1_gxgo8"]
+[ext_resource type="Texture2D" uid="uid://r3a3lvr8h25f" path="res://assets/space3.jpg" id="3_x115k"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_d75br")
@@ -83,6 +84,18 @@ offset_right = 145.0
 offset_bottom = 52.0
 theme = ExtResource("1_gxgo8")
 text = "<-- Back"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer2"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_x115k")
+expand_mode = 3
 
 [connection signal="pressed" from="CanvasLayer/Launch1" to="." method="_on_launch_1_pressed"]
 [connection signal="pressed" from="CanvasLayer/Launch2" to="." method="_on_launch_2_pressed"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpds8ihlrmom1"]
+[gd_scene load_steps=4 format=3 uid="uid://cpds8ihlrmom1"]
 
 [ext_resource type="Script" uid="uid://bjosww54mnhuv" path="res://scripts/credits.gd" id="1_2ckv8"]
 [ext_resource type="Theme" uid="uid://c0es2kte6qmmp" path="res://scripts/normal.tres" id="2_0ctdu"]
+[ext_resource type="Texture2D" uid="uid://c5wi0p73vu3qy" path="res://assets/space4.jpg" id="3_0ctdu"]
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_2ckv8")
@@ -66,6 +67,19 @@ grow_vertical = 0
 theme = ExtResource("2_0ctdu")
 theme_override_font_sizes/font_size = 40
 text = "Back"
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer2"]
+z_index = -100
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_0ctdu")
+expand_mode = 1
 
 [connection signal="pressed" from="CanvasLayer/Awesome Button" to="." method="_on_awesome_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_button_pressed"]

@@ -8,6 +8,8 @@ extends Node2D
 @onready var launch_2: Button = $CanvasLayer/Launch2
 @onready var launch_3: Button = $CanvasLayer/Launch3
 
+var unlock_screen = preload("res://scenes/unlock_ui.tscn")
+
 var rocket_textures = [
 	preload("res://assets/steelrocket.png"),
 	preload("res://assets/copperrocket.png"),
@@ -56,12 +58,55 @@ func launch_rocket(slot_index: int):
 	if inventory_index < Global.rocket_inventory.size():
 		var rocket_slot = [slot1, slot2, slot3][slot_index]
 		var rocket_level = Global.rocket_inventory[inventory_index]
-		
+
+		var delay = 0.0
+
+		if rocket_level >= 1 and Global.mercury_unlocked == false:
+			Global.mercury_unlocked = true
+			spawn_unlock_ui("Mercury", Color("e5e5e5"), delay)
+			delay += 0.5
+			
+		if rocket_level >= 2 and Global.venus_unlocked == false:
+			Global.venus_unlocked = true
+			spawn_unlock_ui("Venus", Color("e3bb76"), delay)
+			delay += 0.5
+			
+		if rocket_level >= 3 and Global.mars_unlocked == false:
+			Global.mars_unlocked = true
+			spawn_unlock_ui("Mars",Color("ff5733"), delay)
+			delay += 0.5
+
+		if rocket_level >= 4 and Global.jupiter_unlocked == false:
+			Global.jupiter_unlocked = true
+			spawn_unlock_ui("Jupiter",Color("d39c7e"), delay)
+			delay += 0.5
+
+		if rocket_level >= 5 and Global.saturn_unlocked == false:
+			Global.saturn_unlocked = true
+			spawn_unlock_ui("Saturn",Color("c5ab6e"), delay)
+			delay += 0.5
+
+		if rocket_level >= 6 and Global.uranus_unlocked == false:
+			Global.uranus_unlocked = true
+			spawn_unlock_ui("Uranus",Color("b2ffff"), delay)
+			delay += 0.5
+			
+		if rocket_level >= 7 and Global.neptune_unlocked == false:
+			Global.neptune_unlocked = true
+			spawn_unlock_ui("Neptune",Color("3f5efb"), delay)
+			delay += 0.5
+
 		print("Launching rocket level " + str(rocket_level) + "!")
-		
 		animate_launch(rocket_slot, inventory_index)
 	else:
 		print("No rocket!")
+
+func spawn_unlock_ui(name: String, planet_color: Color, delay_time: float):
+	await get_tree().create_timer(delay_time).timeout
+	var ui = unlock_screen.instantiate()
+	ui.text_color = planet_color
+	ui.planet_name = name
+	get_tree().root.add_child(ui)
 
 func animate_launch(rocket_slot: TextureRect, inventory_index: int):
 	var original_position = rocket_slot.position

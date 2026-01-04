@@ -20,6 +20,13 @@ var music_volume_db: float = 0.0
 var music_muted: bool = false  
 var play_bgm :bool = false
 var planets: float = 0
+var mercury_unlocked: bool = false
+var venus_unlocked: bool = false
+var mars_unlocked: bool = false
+var jupiter_unlocked: bool = false
+var saturn_unlocked: bool = false
+var uranus_unlocked: bool = false
+var neptune_unlocked: bool = false
 signal play_jupiter
 
 var rocket_levels = {

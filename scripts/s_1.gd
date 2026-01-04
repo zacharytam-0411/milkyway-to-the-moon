@@ -1,5 +1,5 @@
 extends Node2D
-@onready var rocket_building: Button = $RocketBuilding
+@onready var rocket_building: Button = $CanvasLayer/RocketBuilding
 
 
 

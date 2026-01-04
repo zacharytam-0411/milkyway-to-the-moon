@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://clyvckkgasugt"]
+[gd_scene load_steps=8 format=3 uid="uid://clyvckkgasugt"]
 
 [ext_resource type="Script" uid="uid://bo7cmm3c22xll" path="res://scripts/rocket.gd" id="1_8kmw3"]
 [ext_resource type="Theme" uid="uid://c0es2kte6qmmp" path="res://scripts/normal.tres" id="3_agf72"]
 [ext_resource type="Script" uid="uid://cxdo610c8we7b" path="res://scripts/display_1.gd" id="4_y2y7n"]
 [ext_resource type="Texture2D" uid="uid://corhksc3axq45" path="res://assets/rockcoin.png" id="6_g6bar"]
+[ext_resource type="Texture2D" uid="uid://r3a3lvr8h25f" path="res://assets/space3.jpg" id="7_fa8w1"]
 [ext_resource type="Texture2D" uid="uid://bc306fxoqw11u" path="res://assets/steelrocket.png" id="7_g6bar"]
 [ext_resource type="Script" uid="uid://dg2yw3k74hrpy" path="res://scripts/coin_label.gd" id="7_qolsk"]
 
@@ -199,6 +200,18 @@ offset_right = 1140.0
 offset_bottom = 642.0
 theme = ExtResource("3_agf72")
 text = "Launch -->"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_fa8w1")
+expand_mode = 3
 
 [connection signal="pressed" from="BackButton" to="." method="_on_back_button_pressed"]
 [connection signal="pressed" from="LaunchButton" to="." method="_on_launch_button_pressed"]
