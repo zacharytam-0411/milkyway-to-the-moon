@@ -8,9 +8,8 @@ func _ready() -> void:
 	Global.emit_signal("bgm_odyssey")
 	
 func _on_button_pressed() -> void:
-	Global.emit_signal("earth_0")
 	Global.play_bgm = true
-	get_tree().change_scene_to_file("res://scenes/s1.tscn")
+	get_tree().change_scene_to_file("res://scenes/tutorial.tscn")
 	
 func _on_quit_game_pressed() -> void:
 	get_tree().quit()
