@@ -4,17 +4,28 @@ extends Node2D
 @onready var panel: Panel = $CanvasLayer/Panel
 @onready var text_label: Label = $CanvasLayer/Panel/Label
 @onready var continue_label: Label = $CanvasLayer/Panel/ContinueLabel
-@onready var earth: TextureRect = $CanvasLayer/Earth
-@onready var venus: TextureRect = $CanvasLayer/Venus
-@onready var mercury: TextureRect = $CanvasLayer/Mercury
-@onready var jupiter: TextureRect = $CanvasLayer/Jupiter
-@onready var mars: TextureRect = $CanvasLayer/Mars
+@onready var earth: TextureRect = $CanvasLayer/Planets/Earth
+@onready var venus: TextureRect = $CanvasLayer/Planets/Venus
+@onready var mercury: TextureRect = $CanvasLayer/Planets/Mercury
+@onready var jupiter: TextureRect = $CanvasLayer/Planets/Jupiter
+@onready var mars: TextureRect = $CanvasLayer/Planets/Mars
 @onready var rock_2: Area2D = $CanvasLayer/Rock2
 @onready var rock: TextureRect = $CanvasLayer/Rock
 @onready var ironingot: TextureRect = $CanvasLayer/ironingot
 @onready var goldingot: TextureRect = $CanvasLayer/goldingot
 @onready var ironore: Area2D = $CanvasLayer/Ironore
 @onready var goldore: Area2D = $CanvasLayer/Goldore
+@onready var gold_4: TextureRect = $CanvasLayer/UpgradePart/Gold4
+@onready var gold_3: TextureRect = $CanvasLayer/UpgradePart/Gold3
+@onready var gold_2: TextureRect = $CanvasLayer/UpgradePart/Gold2
+@onready var gold_1: TextureRect = $CanvasLayer/UpgradePart/Gold1
+@onready var iron_3: TextureRect = $CanvasLayer/UpgradePart/Iron3
+@onready var iron_2: TextureRect = $CanvasLayer/UpgradePart/Iron2
+@onready var iron_1: TextureRect = $CanvasLayer/UpgradePart/Iron1
+@onready var copper_2: TextureRect = $CanvasLayer/UpgradePart/Copper2
+@onready var copper_1: TextureRect = $CanvasLayer/UpgradePart/Copper1
+@onready var part_1: TextureRect = $CanvasLayer/UpgradePart/Part1
+@onready var upgrade_part: AnimationPlayer = $CanvasLayer/UpgradePart/AnimationPlayer
 
 
 var dialogue_lines = [
@@ -26,7 +37,7 @@ var dialogue_lines = [
 	"This game is a space-themed clicker game!",
 	"You get resources by clicking the spinning rock on the left of your screen.",
 	"As you get more and more rocks, you can get more minerals!",
-	"You can use the minerals obtained to upgrade rocket parts",
+	"You can use the minerals obtained to upgrade rocket parts!",
 	"The tutorial is now ending."
 ]
 
@@ -52,6 +63,17 @@ func _ready() -> void:
 	rock.visible = false
 	ironore.visible = false
 	goldore.visible = false
+	gold_1.visible = false
+	gold_2.visible = false
+	gold_3.visible = false
+	gold_4.visible = false
+	iron_1.visible = false
+	iron_2.visible = false
+	iron_3.visible = false
+	copper_1.visible = false
+	copper_2.visible = false
+	part_1.visible = false
+	
 	
 	start_dialogue()
 
@@ -102,6 +124,28 @@ func _show_line():
 		rock.visible = false
 		goldore.visible = false
 		ironore.visible = false
+		gold_1.visible = true
+		gold_2.visible = true
+		gold_3.visible = true
+		gold_4.visible = true
+		iron_1.visible = true
+		iron_2.visible = true
+		iron_3.visible = true
+		copper_1.visible = true
+		copper_2.visible = true
+		part_1.visible = true
+		upgrade_part.play("upgrade_part")
+	elif current_line == 9:
+		gold_1.visible = false
+		gold_2.visible = false
+		gold_3.visible = false
+		gold_4.visible = false
+		iron_1.visible = false
+		iron_2.visible = false
+		iron_3.visible = false
+		copper_1.visible = false
+		copper_2.visible = false
+		part_1.visible = false
 	else:
 		pass
 
@@ -152,3 +196,11 @@ func _end_dialogue():
 	_hide_continue_prompt()
 	Global.emit_signal("main_theme")
 	get_tree().change_scene_to_file("res://scenes/s1.tscn")
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if current_line == 8:
+		await get_tree().create_timer(0.3).timeout
+		upgrade_part.play("upgrade_part")
+	else:
+		queue_free()
