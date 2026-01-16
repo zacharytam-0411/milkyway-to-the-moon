@@ -5,13 +5,18 @@ extends Node2D
 @onready var text_label: Label = $CanvasLayer/Panel/Label
 @onready var continue_label: Label = $CanvasLayer/Panel/ContinueLabel
 @onready var rock_2: Area2D = $CanvasLayer/Rock2
+@onready var dino_2: AnimatedSprite2D = $CanvasLayer/TextureRect/AnimatedSprite2D2
+@onready var dino: AnimatedSprite2D = $CanvasLayer/TextureRect/AnimatedSprite2D
 
 @onready var planets = $CanvasLayer/Planets
 @onready var mining_ui = $CanvasLayer/MiningStuff
 @onready var upgrade_ui = $CanvasLayer/UpgradePart1
 @onready var upgrade_ui_2: Node2D = $CanvasLayer/UpgradePart2
+@onready var upgrade_ui_3: Node2D = $CanvasLayer/UpgradePart3
 @onready var upgrade_anim: AnimationPlayer = $CanvasLayer/UpgradePart1/AnimationPlayer
 @onready var upgrade_anim_2: AnimationPlayer = $CanvasLayer/UpgradePart2/AnimationPlayer2
+@onready var upgrade_anim_3: AnimationPlayer = $CanvasLayer/UpgradePart3/AnimationPlayer3
+@onready var rocketplanet: Node2D = $CanvasLayer/Rocketplanet
 
 var dialogue_lines = [
 	"Welcome to the game!",
@@ -24,7 +29,8 @@ var dialogue_lines = [
 	"As you get more and more rocks, you can get more minerals!",
 	"You can use the minerals obtained to upgrade rocket parts!",
 	"With all the rocket parts upgraded to the same level, you can craft a rocket!",
-	"The tutorial is now ending."
+	"With each tier of rocket you unlock, you can get to different planets! (WIP)",
+	"The tutorial is now ending, good luck, and enjoy the game!"
 ]
 
 var current_line: int = 0
@@ -41,8 +47,11 @@ func _ready() -> void:
 	mining_ui.hide()
 	upgrade_ui.hide()
 	upgrade_ui_2.hide()
+	upgrade_ui_3.hide()
 	continue_label.hide()
 	rock_2.hide()
+	dino_2.hide()
+	rocketplanet.hide()
 	text_label.text = ""
 	
 	start_dialogue()
@@ -80,9 +89,9 @@ func _update_visuals(line_index: int) -> void:
 			planets.hide()
 			rock_2.show()
 		7:
+			rock_2.hide()
 			mining_ui.show()
 		8:
-			rock_2.hide()
 			mining_ui.hide()
 			upgrade_ui.show()
 			upgrade_ui_2.show()
@@ -91,6 +100,17 @@ func _update_visuals(line_index: int) -> void:
 		9:
 			upgrade_ui.hide()
 			upgrade_ui_2.hide()
+			upgrade_ui_3.show()
+			upgrade_anim_3.play("rocket_craft")
+		10:
+			upgrade_ui_3.hide()
+			dino.hide()
+			dino_2.show()
+			rocketplanet.show()
+		11:
+			dino.hide()
+			rocketplanet.hide()
+			dino_2.hide()
 
 func _finish_typing() -> void:
 	typing = false
@@ -134,3 +154,10 @@ func _on_animation_player_2_animation_finished(anim_name: StringName) -> void:
 		await get_tree().create_timer(0.5).timeout
 		if current_line == 8:
 			upgrade_anim_2.play("upgrade_engine")
+
+
+func _on_animation_player_3_animation_finished(anim_name: StringName) -> void:
+	if current_line == 9:
+		await get_tree().create_timer(0.5).timeout
+		if current_line == 9:
+			upgrade_anim_3.play("rocket_craft")

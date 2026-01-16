@@ -70,10 +70,10 @@ theme = ExtResource("1_gxgo8")
 text = "Launch!"
 
 [node name="MapButton" type="Button" parent="CanvasLayer"]
-offset_left = 822.0
-offset_top = 2.0
-offset_right = 959.0
-offset_bottom = 46.0
+offset_left = 824.0
+offset_top = 5.0
+offset_right = 961.0
+offset_bottom = 49.0
 theme = ExtResource("1_gxgo8")
 text = "Map -->
 "
