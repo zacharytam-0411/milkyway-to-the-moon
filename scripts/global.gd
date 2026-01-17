@@ -32,6 +32,7 @@ var neptune_unlocked: bool = false
 var odyssey_played: bool = false
 var tutorial_finished: bool = false
 var funny_button: int = 0
+var scene_from: String
 signal bgm_galaxy
 signal bgm_odyssey
 signal bgm_earth
@@ -72,8 +73,18 @@ var advancements = {
 		"variable_name": "funny_button",
 		"threshold": 1,
 		"earned": false
+	},
+	"first_planet": {
+		"title": "First Planet!",
+		"desc": "Good job on discovering your first planet!",
+		"variable_name": "mercury_unlocked",
+		"threshold": true,
+		"earned": false
 	}
 }
+
+func _process(delta: float) -> void:
+	check_advancements()
 
 func _rock_1click():
 	match rocktier:
@@ -123,7 +134,6 @@ func _rock_1click():
 			diamond += randf_range(0.1,1) * rock1mult * 0.03
 		_:
 			rock += randf_range(0.1,1) * rock1mult
-	check_advancements()
 
 func f_n(num: float) -> String:
 	if abs(num) >= 1e15:
@@ -153,9 +163,16 @@ func check_advancements():
 	for id in advancements:
 		var adv = advancements[id]
 		if adv["earned"]:
-			continue
+			continue	
 		var current_val = get(adv["variable_name"])
-		if current_val != null and current_val >= adv["threshold"]:
+		if current_val == null:
+			continue
+		var is_triggered = false
+		if typeof(adv["threshold"]) == TYPE_BOOL:
+			is_triggered = (current_val == adv["threshold"])
+		else:
+			is_triggered = (current_val >= adv["threshold"])
+		if is_triggered:
 			adv["earned"] = true
 			emit_signal("advancement_unlocked", adv["title"], adv["desc"])
 			print("Signal Emitted for: ", adv["title"])

@@ -9,6 +9,15 @@ script = ExtResource("1_d75br")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="MapButton" type="Button" parent="CanvasLayer"]
+offset_left = 840.0
+offset_top = 5.0
+offset_right = 977.0
+offset_bottom = 49.0
+theme = ExtResource("1_gxgo8")
+text = "Map -->
+"
+
 [node name="TutorialLabel" type="Label" parent="CanvasLayer"]
 texture_filter = 1
 anchors_preset = 5
@@ -69,15 +78,6 @@ offset_bottom = 640.0
 theme = ExtResource("1_gxgo8")
 text = "Launch!"
 
-[node name="MapButton" type="Button" parent="CanvasLayer"]
-offset_left = 824.0
-offset_top = 5.0
-offset_right = 961.0
-offset_bottom = 49.0
-theme = ExtResource("1_gxgo8")
-text = "Map -->
-"
-
 [node name="BackButton" type="Button" parent="CanvasLayer"]
 offset_left = 8.0
 offset_right = 145.0
@@ -98,8 +98,8 @@ grow_vertical = 2
 texture = ExtResource("3_x115k")
 expand_mode = 3
 
+[connection signal="pressed" from="CanvasLayer/MapButton" to="." method="_on_map_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Launch1" to="." method="_on_launch_1_pressed"]
 [connection signal="pressed" from="CanvasLayer/Launch2" to="." method="_on_launch_2_pressed"]
 [connection signal="pressed" from="CanvasLayer/Launch3" to="." method="_on_launch_3_pressed"]
-[connection signal="pressed" from="CanvasLayer/MapButton" to="." method="_on_map_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/BackButton" to="." method="_on_back_button_pressed"]

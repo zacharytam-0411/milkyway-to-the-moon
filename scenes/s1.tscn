@@ -119,9 +119,9 @@ script = ExtResource("9_q631x")
 
 [node name="AutoCPS" type="Label" parent="CanvasLayer"]
 texture_filter = 1
-offset_left = 719.0
+offset_left = 575.0
 offset_top = 539.0
-offset_right = 988.0
+offset_right = 844.0
 offset_bottom = 582.0
 theme = ExtResource("3_yyhw1")
 script = ExtResource("9_xysxj")

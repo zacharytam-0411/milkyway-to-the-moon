@@ -1,0 +1,94 @@
+[gd_scene load_steps=13 format=3 uid="uid://bmg74qa4eri06"]
+
+[ext_resource type="Texture2D" uid="uid://bxfqnn7lsd1qj" path="res://assets/Thumbnail.png" id="1_1ap01"]
+[ext_resource type="Script" uid="uid://byxsq57lgdxsq" path="res://scripts/transition.gd" id="1_m7m3o"]
+[ext_resource type="Theme" uid="uid://c0es2kte6qmmp" path="res://scripts/normal.tres" id="2_m7m3o"]
+[ext_resource type="Script" uid="uid://larxvedrappu" path="res://scripts/rock_2.gd" id="3_xhlym"]
+[ext_resource type="Texture2D" uid="uid://cisndv6t1obs8" path="res://assets/rock.png" id="4_j7crc"]
+[ext_resource type="Texture2D" uid="uid://dhd4jtxdr5hpo" path="res://assets/sprites/kuro/base/idle.png" id="6_6ancn"]
+[ext_resource type="Texture2D" uid="uid://bub705xu15msm" path="res://assets/rocket.png" id="7_lvx3c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7fmn4"]
+size = Vector2(14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lpvoh"]
+atlas = ExtResource("6_6ancn")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_at5dv"]
+atlas = ExtResource("6_6ancn")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcd4p"]
+atlas = ExtResource("6_6ancn")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kejnv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lpvoh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_at5dv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcd4p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_m7m3o")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_1ap01")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+offset_left = 11.0
+offset_top = 448.0
+offset_right = 172.0
+offset_bottom = 484.0
+theme = ExtResource("2_m7m3o")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Loading..."
+
+[node name="Rock2" type="Area2D" parent="."]
+position = Vector2(83.00003, 576)
+scale = Vector2(10, 10)
+script = ExtResource("3_xhlym")
+dps = 90
+
+[node name="Sprite2D" type="Sprite2D" parent="Rock2"]
+texture_filter = 1
+position = Vector2(0.10000992, -5.722046e-06)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("4_j7crc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rock2"]
+position = Vector2(0.10000992, -5.722046e-06)
+scale = Vector2(0.75, 0.75)
+shape = SubResource("RectangleShape2D_7fmn4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(361, 242.00002)
+rotation = -0.034906585
+scale = Vector2(7.3229184, 7.3229184)
+sprite_frames = SubResource("SpriteFrames_kejnv")
+autoplay = "default"
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 450.0
+offset_top = 73.000015
+offset_right = 751.15173
+offset_bottom = 422.33594
+rotation = 0.61086524
+texture = ExtResource("7_lvx3c")

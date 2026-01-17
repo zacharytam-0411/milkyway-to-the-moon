@@ -6,5 +6,5 @@ var cts: int = 0
 var clicktime: float = 0.0
 
 func _process(delta):
-	rotation_degrees += deg_to_rad(dps) * delta
+	rotation_degrees += dps * delta
 	clicktime += delta
