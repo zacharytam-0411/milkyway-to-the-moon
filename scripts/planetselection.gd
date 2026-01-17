@@ -37,7 +37,7 @@ func _on_mercury_pressed() -> void:
 		Global.scene_from = "mercury"
 		get_tree().change_scene_to_file("res://scenes/transition.tscn")
 	else:
-		pass
+		print("Not Unlocked!")
 
 func _on_venus_pressed() -> void:
 	if Global.venus_unlocked:
