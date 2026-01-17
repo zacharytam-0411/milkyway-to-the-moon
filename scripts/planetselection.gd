@@ -31,9 +31,9 @@ func _on_back_button_pressed() -> void:
 func _on_mercury_pressed() -> void:
 	if Global.mercury_unlocked:
 		Global.emit_signal("bgm_mercury")
-		await get_tree().create_timer(1).timeout
+		await get_tree().create_timer(0.8).timeout
 		anim.play("white_screen")
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(2).timeout
 		Global.scene_from = "mercury"
 		get_tree().change_scene_to_file("res://scenes/transition.tscn")
 	else:
