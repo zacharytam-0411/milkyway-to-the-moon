@@ -9,12 +9,17 @@ const TRACKS = {
 	"bgm_venus":   {"path": "res://audio/venus.mp3",         "offset": 20},
 	"bgm_mars":    {"path": "res://audio/mars.mp3",          "offset": 0},
 	"bgm_jupiter": {"path": "res://audio/jupiter.mp3",       "offset": 0},
+	"bgm_saturn":  {"path": "res://audio/saturn.mp3",        "offset": 0},
+	"bgm_uranus":  {"path": "res://audio/uranus.mp3",        "offset": 0},
+	"bgm_neptune": {"path": "res://audio/neptune.mp3",       "offset": 0},
 	"bgm_loop":    {"path": "res://audio/looping.mp3",       "offset": 0}
 }
 
 var playback_positions: Dictionary = {}
 var current_track_path: String = ""
-var is_loop_locked: bool = false
+var locked_by_loop: bool = false
+var fade_duration: float = 1.0
+var active_tween: Tween
 
 func _ready() -> void:
 	var music_bus = AudioServer.get_bus_index("Music")
@@ -33,36 +38,44 @@ func _process(_delta: float) -> void:
 			stop()
 
 func _on_play_requested(track_key: String) -> void:
-	if is_loop_locked and track_key != "bgm_loop":
-		return
-	
-	if track_key == "bgm_loop":
-		is_loop_locked = true
+	var planets = ["bgm_earth", "bgm_mercury", "bgm_venus", "bgm_mars", "bgm_jupiter", "bgm_saturn", "bgm_uranus", "bgm_neptune"]
+	var is_planet = track_key in planets
+	var is_loop = (track_key == "bgm_loop")
+
+	if locked_by_loop and not is_planet:
+		return 
+
+	if is_loop:
+		locked_by_loop = true
+	elif is_planet:
+		locked_by_loop = false
 	
 	var data = TRACKS[track_key]
 	var target_db = Global.music_volume_db + data.get("offset", 0)
-	var is_instant = data.get("instant", false)
 	
-	_switch_and_play(data["path"], target_db, is_instant)
+	_switch_and_play(data["path"], target_db)
 
-func _switch_and_play(new_path: String, target_db: float, instant: bool) -> void:
+func _switch_and_play(new_path: String, target_db: float) -> void:
 	if current_track_path == new_path:
 		if not playing:
-			play() 
+			play()
 		return
+
+	if active_tween:
+		active_tween.kill()
 
 	if stream:
 		playback_positions[current_track_path] = get_playback_position()
+
+	active_tween = create_tween()
 	
-	current_track_path = new_path
-	stream = load(new_path)
+	if playing:
+		active_tween.tween_property(self, "volume_db", -80.0, fade_duration).set_trans(Tween.TRANS_SINE)
 	
-	if instant:
-		self.volume_db = target_db
+	active_tween.tween_callback(func():
+		current_track_path = new_path
+		stream = load(new_path)
 		play(playback_positions.get(new_path, 0.0))
-	else:
-		self.volume_db = -20.0 
-		play(playback_positions.get(new_path, 0.0))
-		
-		var tween = create_tween()
-		tween.tween_property(self, "volume_db", target_db, 1.5).set_trans(Tween.TRANS_SINE)
+	)
+	
+	active_tween.tween_property(self, "volume_db", target_db, fade_duration).set_trans(Tween.TRANS_SINE)

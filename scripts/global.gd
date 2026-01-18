@@ -40,6 +40,9 @@ signal bgm_mercury
 signal bgm_venus
 signal bgm_mars
 signal bgm_jupiter
+signal bgm_saturn
+signal bgm_uranus
+signal bgm_neptune
 signal main_theme
 signal bgm_loop
 signal advancement_unlocked(title, description)

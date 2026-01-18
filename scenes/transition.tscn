@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bmg74qa4eri06"]
+[gd_scene load_steps=34 format=3 uid="uid://bmg74qa4eri06"]
 
 [ext_resource type="Texture2D" uid="uid://bxfqnn7lsd1qj" path="res://assets/Thumbnail.png" id="1_1ap01"]
 [ext_resource type="Script" uid="uid://byxsq57lgdxsq" path="res://scripts/transition.gd" id="1_m7m3o"]
@@ -7,6 +7,24 @@
 [ext_resource type="Texture2D" uid="uid://cisndv6t1obs8" path="res://assets/rock.png" id="4_j7crc"]
 [ext_resource type="Texture2D" uid="uid://dhd4jtxdr5hpo" path="res://assets/sprites/kuro/base/idle.png" id="6_6ancn"]
 [ext_resource type="Texture2D" uid="uid://bub705xu15msm" path="res://assets/rocket.png" id="7_lvx3c"]
+[ext_resource type="Texture2D" uid="uid://bc306fxoqw11u" path="res://assets/steelrocket.png" id="8_ch6ao"]
+[ext_resource type="Texture2D" uid="uid://del1kxqgq8uvo" path="res://assets/copperrocket.png" id="9_s64h0"]
+[ext_resource type="Texture2D" uid="uid://dya4bguesbnbl" path="res://assets/ironrocket.png" id="10_nepbt"]
+[ext_resource type="Texture2D" uid="uid://dijsis1vjyesf" path="res://assets/goldrocket.png" id="11_1bsl1"]
+[ext_resource type="Texture2D" uid="uid://dp55ice5quv46" path="res://assets/zincrocket.png" id="12_vntx2"]
+[ext_resource type="Texture2D" uid="uid://d0isqa3tyhlw6" path="res://assets/emeraldrocket.png" id="13_stgyr"]
+[ext_resource type="Texture2D" uid="uid://ds1j46gam63q7" path="res://assets/lapisrocket.png" id="14_2vtaj"]
+[ext_resource type="Texture2D" uid="uid://c7mcxyc5oogrd" path="res://assets/diamondrocket.png" id="15_hr02o"]
+[ext_resource type="Texture2D" uid="uid://d0nev8kdank7t" path="res://assets/sun.png" id="16_g7eqm"]
+[ext_resource type="Texture2D" uid="uid://b18lot253t7t" path="res://assets/mercury.png" id="17_u2u44"]
+[ext_resource type="Texture2D" uid="uid://c5lvpi8miefhy" path="res://assets/venus.png" id="18_wchpg"]
+[ext_resource type="Texture2D" uid="uid://b6c5b7j3halft" path="res://assets/mars.png" id="19_d40d4"]
+[ext_resource type="Texture2D" uid="uid://dowhecs3gsd0n" path="res://assets/jupiter.png" id="20_osch2"]
+[ext_resource type="Texture2D" uid="uid://bptdjasmmlivo" path="res://assets/saturn.png" id="21_q40sd"]
+[ext_resource type="Texture2D" uid="uid://ju484wqd3l2o" path="res://assets/uranus.png" id="22_nvqul"]
+[ext_resource type="Texture2D" uid="uid://dqbt14eroye68" path="res://assets/neptune.png" id="23_2lyub"]
+[ext_resource type="Texture2D" uid="uid://bctijft1myqba" path="res://assets/earth.png" id="24_ktl7v"]
+[ext_resource type="Texture2D" uid="uid://dnqp4dxm31k8i" path="res://assets/sprites/game_studio.png" id="25_s64h0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7fmn4"]
 size = Vector2(14, 14)
@@ -39,6 +57,163 @@ animations = [{
 "name": &"default",
 "speed": 5.0
 }]
+
+[sub_resource type="Animation" id="Animation_ilq6x"]
+resource_name = "change_planet"
+length = 6.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect2:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 3, 3.75, 4.5, 5.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("8_ch6ao"), ExtResource("9_s64h0"), ExtResource("10_nepbt"), ExtResource("11_1bsl1"), ExtResource("12_vntx2"), ExtResource("13_stgyr"), ExtResource("14_2vtaj"), ExtResource("15_hr02o")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Planet:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 3, 3.75, 4.5, 5.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("16_g7eqm"), ExtResource("17_u2u44"), ExtResource("18_wchpg"), ExtResource("19_d40d4"), ExtResource("20_osch2"), ExtResource("21_q40sd"), ExtResource("22_nvqul"), ExtResource("23_2lyub")]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 3, 3.75, 4.5, 5.25, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(486.3151, 25.892239), Vector2(518.31494, 25.892239), Vector2(566.31494, 25.892239), Vector2(606.31494, 25.892239), Vector2(638.31494, 25.892239), Vector2(686.3149, 33.89224), Vector2(750.31494, 41.892235), Vector2(814.3148, 81.89223), Vector2(862.3149, 97.89224)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TextureRect2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 3, 3.75, 4.5, 5.25, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.9651671, 1.0471976, 1.134464, 1.1868238, 1.2391838, 1.3089969, 1.361356816555577, 1.4311699866353502, 1.4660765716752369]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimatedSprite2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 3, 3.75, 4.5, 5.25, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(360.00006, 149), Vector2(381.00006, 138.00002), Vector2(421.00012, 125), Vector2(460.00015, 116), Vector2(488.00012, 109), Vector2(530.0001, 106), Vector2(591.00006, 105), Vector2(649, 133.99994), Vector2(703.9999, 143.99997)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimatedSprite2D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.75, 1.5, 2.25, 3, 3.75, 4.5, 5.25, 6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [-0.57595867, -0.5235988, -0.44331363, -0.40142572, -0.34906584, -0.27925268, -0.2268928, -0.13962634, -0.10471976]
+}
+
+[sub_resource type="Animation" id="Animation_uw02p"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect2:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("7_lvx3c")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Planet:texture")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("TextureRect2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(486.3151, 25.892239)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("TextureRect2:rotation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.9651671]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("AnimatedSprite2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(363.00006, 137)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimatedSprite2D:rotation")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.17453292]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f50ru"]
+_data = {
+&"RESET": SubResource("Animation_uw02p"),
+&"change_planet": SubResource("Animation_ilq6x")
+}
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_m7m3o")
@@ -78,17 +253,104 @@ shape = SubResource("RectangleShape2D_7fmn4")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(361, 242.00002)
-rotation = -0.034906585
+position = Vector2(363.00006, 137)
+rotation = 0.17453292
 scale = Vector2(7.3229184, 7.3229184)
 sprite_frames = SubResource("SpriteFrames_kejnv")
 autoplay = "default"
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 texture_filter = 1
-offset_left = 450.0
-offset_top = 73.000015
-offset_right = 751.15173
-offset_bottom = 422.33594
-rotation = 0.61086524
+offset_left = 486.3151
+offset_top = 25.892239
+offset_right = 766.3843
+offset_bottom = 343.12405
+rotation = 0.9651671
 texture = ExtResource("7_lvx3c")
+stretch_mode = 5
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_f50ru")
+}
+
+[node name="Planet" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 837.0
+offset_top = 184.0
+offset_right = 981.0
+offset_bottom = 328.0
+scale = Vector2(1.5, 1.5)
+stretch_mode = 5
+
+[node name="Earth" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 124.0
+offset_top = 264.0
+offset_right = 276.0
+offset_bottom = 416.0
+texture = ExtResource("24_ktl7v")
+
+[node name="Earth2" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 321.0
+offset_top = 533.0
+offset_right = 413.0
+offset_bottom = 625.0
+texture = ExtResource("24_ktl7v")
+
+[node name="TargetPlanet" type="TextureRect" parent="."]
+texture_filter = 1
+offset_left = 646.0
+offset_top = 533.0
+offset_right = 738.0
+offset_bottom = 625.0
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="."]
+offset_left = 431.0
+offset_top = 554.0
+offset_right = 542.0
+offset_bottom = 602.0
+theme = ExtResource("2_m7m3o")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "-->"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 217.0
+offset_top = 555.0
+offset_right = 305.0
+offset_bottom = 603.0
+theme = ExtResource("2_m7m3o")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "TER"
+
+[node name="TargetPlanetLabel" type="Label" parent="."]
+offset_left = 513.0
+offset_top = 555.0
+offset_right = 601.0
+offset_bottom = 603.0
+theme = ExtResource("2_m7m3o")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "SOL"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1071.75, 571.75006)
+scale = Vector2(0.5136718, 0.5136718)
+texture = ExtResource("25_s64h0")
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 559.0
+offset_top = 464.0
+offset_right = 1142.0
+offset_bottom = 500.0
+theme = ExtResource("2_m7m3o")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "(Feature is WIP, currently it does not lead to anywhere)"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
