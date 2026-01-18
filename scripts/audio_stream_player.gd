@@ -18,6 +18,7 @@ const TRACKS = {
 var playback_positions: Dictionary = {}
 var current_track_path: String = ""
 var locked_by_loop: bool = false
+var is_playing_planet: bool = false
 var fade_duration: float = 1.0
 var active_tween: Tween
 
@@ -41,14 +42,23 @@ func _on_play_requested(track_key: String) -> void:
 	var planets = ["bgm_earth", "bgm_mercury", "bgm_venus", "bgm_mars", "bgm_jupiter", "bgm_saturn", "bgm_uranus", "bgm_neptune"]
 	var is_planet = track_key in planets
 	var is_loop = (track_key == "bgm_loop")
+	var is_main = (track_key == "main_theme")
 
 	if locked_by_loop and not is_planet:
 		return 
 
+	if is_playing_planet and not (is_planet or is_loop or is_main):
+		return
+
 	if is_loop:
 		locked_by_loop = true
+		is_playing_planet = false
 	elif is_planet:
 		locked_by_loop = false
+		is_playing_planet = true
+	else:
+		locked_by_loop = false
+		is_playing_planet = false
 	
 	var data = TRACKS[track_key]
 	var target_db = Global.music_volume_db + data.get("offset", 0)
